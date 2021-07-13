@@ -1,0 +1,8 @@
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\bin\Debug\Godot C# Test.dll
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\bin\Debug\Godot C# Test.pdb
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\obj\Debug\Godot C# Test.csproj.AssemblyReference.cache
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\obj\Debug\Godot C# Test.AssemblyInfoInputs.cache
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\obj\Debug\Godot C# Test.AssemblyInfo.cs
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\obj\Debug\Godot C# Test.csproj.CoreCompileInputs.cache
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\obj\Debug\Godot C# Test.dll
+C:\Users\bkier\OneDrive\Documents\Godot C# Test\.mono\temp\obj\Debug\Godot C# Test.pdb

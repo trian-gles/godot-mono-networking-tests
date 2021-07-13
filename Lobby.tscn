@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Lobby.cs" type="Script" id=1]
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostBtn" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = 64.0
+margin_right = 50.0
+margin_bottom = 120.0
+text = "Host Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinBtn" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = 184.0
+margin_right = 50.0
+margin_bottom = 240.0
+text = "Join Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 216.0
+margin_top = 32.0
+margin_right = 256.0
+margin_bottom = 46.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HostBtn" to="." method="_onHostBtnPressed"]
+[connection signal="pressed" from="JoinBtn" to="." method="_onJoinBtnPressed"]
