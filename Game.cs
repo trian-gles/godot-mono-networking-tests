@@ -10,23 +10,32 @@ public class Game : Node2D
     public Position2D p2Pos;
 
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public void config(bool server)
     {
-        p1Pos = (Position2D)GetNode("P1Pos");
-        p2Pos = (Position2D)GetNode("P2Pos");
+        if (server)
+        {
+            p1Pos = (Position2D)GetNode("P1Pos");
+            p2Pos = (Position2D)GetNode("P2Pos");
+        }
+        else 
+        {
+            p2Pos = (Position2D)GetNode("P1Pos");
+            p1Pos = (Position2D)GetNode("P2Pos");
+        }
+        
         var playerScene = (PackedScene)ResourceLoader.Load("res://Player.tscn");
 
         var p1 = (Player)playerScene.Instance();
         p1.Name = GetTree().GetNetworkUniqueId().ToString();
         p1.SetNetworkMaster(GetTree().GetNetworkUniqueId());
-        Console.WriteLine($"Spawning player 1 with id {p1.Name}");
+        Console.WriteLine($"Spawning local player with id {p1.Name}");
         p1.GlobalPosition = p1Pos.GlobalPosition;
         AddChild(p1);
 
         var p2 = (Player)playerScene.Instance();
-        p2.Name = Globals.p2Id.ToString();
-        p2.SetNetworkMaster(Globals.p2Id);
-        Console.WriteLine($"Spawning player 1 with id {p2.Name}");
+        p2.Name = Globals.otherId.ToString();
+        p2.SetNetworkMaster(Globals.otherId);
+        Console.WriteLine($"Spawning remote with id {p2.Name}");
         p2.GlobalPosition = p2Pos.GlobalPosition;
         AddChild(p2);
 

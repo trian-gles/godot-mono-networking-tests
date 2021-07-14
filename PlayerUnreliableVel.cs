@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class PlayerUnreliablePos : KinematicBody2D
+public class PlayerUnreliableVel : KinematicBody2D
 {
     [Export]
     public int gravity = 800;
@@ -11,6 +11,9 @@ public class PlayerUnreliablePos : KinematicBody2D
 
     [Export]
     public int speed = 200;
+
+    [Puppet]
+    public Vector2 PuppetVelocity { get; set; }
 
     private Vector2 vel = new Vector2();
     public override void _Ready()
@@ -24,13 +27,8 @@ public class PlayerUnreliablePos : KinematicBody2D
         GlobalPosition = pos;
     }
 
-    public override void _PhysicsProcess(float delta)
+    public void GetInput() 
     {
-        if (!IsNetworkMaster()) 
-        {
-            return;
-        }
-
         if (Input.IsActionPressed("left"))
         {
             vel.x = speed * -1;
@@ -41,19 +39,35 @@ public class PlayerUnreliablePos : KinematicBody2D
             vel.x = speed;
         }
 
-        else 
+        else
         {
             vel.x = 0;
         }
 
-        if (Input.IsActionJustPressed("jump")) 
+        if (Input.IsActionJustPressed("jump"))
         {
             vel.y = -jumpForce;
         }
 
-        vel.y += gravity * delta;
+        vel.y += Convert.ToSingle(gravity * 0.0166666666667);
+
+        Rset(nameof(PuppetVelocity), vel);
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        if (IsNetworkMaster())
+        {
+            GetInput();
+        }
+        else 
+        
+        {
+            vel = PuppetVelocity;
+        }
+
+        
         MoveAndSlide(vel, Vector2.Up);
-        Rpc(nameof(_setPosition), GlobalPosition);
 
     }
 
